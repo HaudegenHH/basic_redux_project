@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+## Basic project that illustrates and simplifies the Redux flow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- installed packages: redux & react-redux
+ 
+---
 
-## Available Scripts
+- create UI component "CakeContainer"
+- create src/redux/cake folder 
+- inside create "cakeActions.js" where you define the actionCreator
+- its a good practice to make a separated file for the action.type constants
+- therefore create cakeTypes.js 
+- after the actions the next would be the reducer
+- create in the same folder "cakeReducer.js" which takes 2 arguments: state &   
+  action and returns a new state.
+- next create the store and provide it to the application
+  (src/redux/store.js)
+- to provide the redux store to the react application, the react-redux lib exports
+  a component called: Provider
+- so in App.js you import the Provider and wrap the App with it and provider the
+  store via prop
 
-In the project directory, you can run:
+Now that all components are set up, you have to figure out how to get hold of the redux state and how do you dispatch an action from within a react component like CakeContainer
 
-### `npm start`
+- in CakeContainer.js i want to display the number of cakes which is part of the
+  redux state, and this is also the component from which i want to dispatch the BUY_CAKE action on a button click.
+- to achieve that there are 3 steps
+- first you have to define a new fn called "mapStateToProps" (you can name it
+  whatever you want but this is the convention). It gets the redux state as parameter, and returns an object. In this simple example i just have that one state property that i am trying to access: the "numOfCakes".
+- 2nd: same for the "mapDispatchToProps" function which takes a dispatch fn as a
+  parameter and returns an object where the actionCreator fn (buyCake) is dispatched.
+- to collect this actionCreator functions at one place you could create an index.js
+  in the redux folder and import it from CakeContainer
+- for step no3 you need to connect these to functions with the react component
+- for that you ll need the connect function from the react-redux library
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now the component and the store are hooked and by clicking the button the numOfCakes is reducing.
+  

@@ -34,4 +34,13 @@ Now that all components are set up, you have to figure out how to get hold of th
 - for that you ll need the connect function from the react-redux library
 
 Now the component and the store are hooked and by clicking the button the numOfCakes is reducing.
+
+### note
+
+- mapStateToProps: if you want to access the redux state in a component, you define this function. It gets the state as a parameter which can be used to retrieve the state properties you want to update. In this case i map state.numOfCakes to a prop, called numOfCakes which we then can render in the jsx (props.numOfCakes).
+
+- similarily for dispatching actions you have the mapDispatchToState function which gets the dispatch method as a parameter and allows us to map actionCreators to props in the component. In this case i map dispatching buyCake() to a prop, called buyCake which can be called (props.buyCake) on button click.
   
+- the connect function finally makes it all possible. It connects a react component like the CakeContainer to the redux store. 
+  
+That is the most basic pattern you can have with react and redux.

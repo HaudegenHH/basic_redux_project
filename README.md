@@ -82,3 +82,13 @@ Its obvious that the usage of hooks is much simpler than with the connect fn.
 But there are a few usage warnings when using React Redux with hooks. (it all depends on the nesting of your components and how you write your selector functions)
 
 https://react-redux.js.org/api/hooks#usage-warnings
+
+---
+
+## Adding another product
+
+To prove the scalability of this pattern, lets add another "feature" as product and give the customer the ability to buy icecream.
+
+- that requires a new folder, called iceCream, which is next to the cake folder
+- similar to the cake folder, within the iceCream folder, you create 3 files: iceCreamTypes.js, iceCreamActions.js and the iceCreamReducer.js
+  

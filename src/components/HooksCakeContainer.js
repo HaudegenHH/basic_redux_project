@@ -8,7 +8,7 @@ function HooksCakeContainer() {
     // it receives the state as argument (similar to mapStateToProps)
     // and should return a value (in this case numOfCakes)
     // and the useSelector returns whatever is returned by the selector fn
-    const numOfCakes = useSelector(state => state.numOfCakes)
+    const numOfCakes = useSelector(state => state.cake.numOfCakes)
     const dispatch = useDispatch();
 
     return (

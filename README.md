@@ -92,3 +92,16 @@ To prove the scalability of this pattern, lets add another "feature" as product 
 - that requires a new folder, called iceCream, which is next to the cake folder
 - similar to the cake folder, within the iceCream folder, you create 3 files: iceCreamTypes.js, iceCreamActions.js and the iceCreamReducer.js
   
+Now that you have the iceCreamReducer to perform state transitions based on the action, the next step is to make the redux store aware of this reducer.
+
+If you take a look at store.js you see that the createStore method (which can only accept one reducer) already gets passed into the cakeReducer.
+But with the "combineReducer" fn you can handle scenarios where there are multiple reducers.
+
+Therefore create in the redux folder a "rootReducer.js" 
+- within this file you combine all the reducers and export one single reducer that can be passed to  the createStore function.
+
+After setting up the store with the newly created rootReducer you can create a new Component, called "IceCreamContainer.js"
+
+Since with rootReducer you have another property in the state object, you have to now adjust the code a little in the 2 Component Containers: Inside the mapStateToProps you now have to reference the "state.cake.numOfCakes" or "state.iceCream.numOfIceCreams"
+
+Insert the components in App.js and test it out. Thats how you add multiple reducers to the app.

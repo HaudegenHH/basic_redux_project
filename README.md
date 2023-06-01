@@ -105,3 +105,50 @@ After setting up the store with the newly created rootReducer you can create a n
 Since with rootReducer you have another property in the state object, you have to now adjust the code a little in the 2 Component Containers: Inside the mapStateToProps you now have to reference the "state.cake.numOfCakes" or "state.iceCream.numOfIceCreams"
 
 Insert the components in App.js and test it out. Thats how you add multiple reducers to the app.
+
+---
+
+## Logger Middleware
+
+- install the package
+```sh
+npm i redux-logger
+```
+- import logger in store.js
+- import applyMiddleware 
+..which is the 2nd parameter giving to createStore method and it takes the logger middleware as parameter
+
+When you open your dev tools in the browser, choose the console tab inside and click now one of the buttons. 
+You should see the logger middleware in action, logging: 
+an action (eg: BUY_CAKE) together with a timestamp and  
+prev state, action and next state objects to the console.
+
+Thats how you apply middleware to your application.
+
+---
+
+## Speaking of devtools...
+There is a chrome extension "redux devtools" which is very handy.
+To be able to use it, add the extension to your browser and then 
+- install redux devtools in your project
+```sh
+npm i --save redux-devtools-extension
+```
+- import "composeWithDevTools" in  store.js 
+..which is now the 2nd parameter of createStore with applyMiddleware as its argument
+```sh
+npm start
+```  
+..and you should see in the browser console that you now have an additional tab for redux in the dev tools (or the same redux panel outside the browser dev tools if clicking the symbol for redux-devtools on the right side of the browsers menu bar).
+
+You can see the state at any time, and when you press one of the buttons in the UI (eg: to buy a cake), you see immediately the changes in the state, and the corresponding action on the left. 
+
+If you then click the action you can see the state at that moment or to be precise, after the action has performed the transition.
+very useful for debugging!
+
+Also you will find a button (in the redux devtool panel) for dispatching actions without the need to have an UI component for that. (kinda like postman)
+
+Apart from other useful features there is also a slider:
+It basically gives you the option to travel through all the actions and see the state changes, which intern affects the UI.
+
+in short: i highly recommend to use this redux-devtool for your react-redux project!

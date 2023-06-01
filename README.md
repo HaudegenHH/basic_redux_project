@@ -10,8 +10,7 @@
 - its a good practice to make a separated file for the action.type constants
 - therefore create cakeTypes.js 
 - after the actions the next would be the reducer
-- create in the same folder "cakeReducer.js" which takes 2 arguments: state &   
-  action and returns a new state.
+- create in the same folder "cakeReducer.js" which takes 2 arguments: state & action and returns a new state.
 - next create the store and provide it to the application
   (src/redux/store.js)
 - to provide the redux store to the react application, the react-redux lib exports
@@ -35,7 +34,7 @@ Now that all components are set up, you have to figure out how to get hold of th
 
 Now the component and the store are hooked and by clicking the button the numOfCakes is reducing.
 
-### note
+## Note
 
 - mapStateToProps: if you want to access the redux state in a component, you define this function. It gets the state as a parameter which can be used to retrieve the state properties you want to update. In this case i map state.numOfCakes to a prop, called numOfCakes which we then can render in the jsx (props.numOfCakes).
 
@@ -44,3 +43,42 @@ Now the component and the store are hooked and by clicking the button the numOfC
 - the connect function finally makes it all possible. It connects a react component like the CakeContainer to the redux store. 
   
 That is the most basic pattern you can have with react and redux.
+
+---
+
+## Change to hooks
+
+With this basic redux pattern as a starting point you learnt that..
+- you have to define the action creators
+- then define the reducer functions
+- provide the store and
+- connect the components to the store 
+
+In doing so the react components get access to the redux state and are able to dispatch actions to the redux store.
+
+A couple of years back React hooks were introduced.
+Hooks basically give function components the ability to use local components state, execute side effects and more..
+
+Since React Redux 7.1 have been added, it now offers a bunch of hook apis as an alternative to the existing connect higher order component!
+
+The Apis allow you to subscribe to the redux store and dispatch actions without having to wrap your components in connect().
+
+**useSelector hook** 
+- create HooksCakeContainer.js
+- use snippet "rfce" for function component
+- for the jsx you just need like before a h2 with the numOfCakes inside
+  and a button to dispatch the BUY_CAKE action.
+- now that you have the component in place lets get back to the topic of useSelector:
+useSelector is a hook that react-redux library provides which acts as a close aquivalent to the mapStateToProps function.
+- to get hold of any state that is maintained in the store you use the useSelector hook. 
+- it needs a "selector function" being passed in, and the argument that this fn receives is the state, from which you can extrapolate the values that you want; whatever is returned by the selector fn, is then returned by the useSelector hook.
+
+- 2nd: you need to import and utilize the **useDispatch hook**
+- it returns a reference to the dispatch fn of the redux store
+- it can now be used to dispatch action as needed
+- for the button you'd simply create an onclick handler
+
+Its obvious that the usage of hooks is much simpler than with the connect fn.
+But there are a few usage warnings when using React Redux with hooks. (it all depends on the nesting of your components and how you write your selector functions)
+
+https://react-redux.js.org/api/hooks#usage-warnings

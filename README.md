@@ -108,9 +108,13 @@ Insert the components in App.js and test it out. Thats how you add multiple redu
 
 ---
 
-## Logger Middleware
+## Middleware
 
-- install the package
+- is the suggested way to extend Redux with custom functionality
+- provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+- is used for logging, crash reporting, performing asychronous tasks etc
+
+Install the logger middleware package
 ```sh
 npm i redux-logger
 ```
